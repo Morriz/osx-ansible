@@ -5,6 +5,7 @@
   - role: osxc.packages
     brew_taps:
     - caskroom/fonts
+    - thoughtbot/formulae
     brew_packages:
     - git
     - zsh
@@ -13,7 +14,156 @@
     - ctags
     - reattach-to-user-namespace
     - tmux
+    # Git enrichments
+    - hub
+    - legit
+    - gitsh
+    - git-extras
+    - git-flow
+    # platforms / languages
+    - node
+    - maven
+    ## Clojure
+    # - leiningen
+    ## Scala
+    # - sbt
+    ## Ruby
+    - rbenv
+    - ruby-build
+    ## END: Ruby
+    - go
+    # - rust
+    - android-sdk
+    - android-ndk
+    # Databases
+    - mysql
+    - postgres
+    - mongodb
+    - redis
+    - elasticsearch
+    # Deployment
+    - heroku-toolbelt
+    #- role: brew_package
+    # package_name: ansible # Hey ! Already there !
+
     cask_packages:
     - font-inconsolata-for-powerline
     - iterm2
     - macvim
+    # Hide and re-route .DS_store files
+    - asepsis
+
+    # VMs
+    - virtualbox
+    - vagrant
+
+    # Editors / IDSs
+    - atom
+    - lighttable
+    - webstorm
+    # - intellij-idea
+    - netbeans
+
+    # Collaboration
+    - slack
+    - google-hangouts
+
+    # OSX tooling
+    - the-unarchiver
+    ## Homebrew GUI
+    - cakebrew
+    ## window management
+    - spectacle
+    ## clipboard manager
+    - clipmenu
+    ## Launcher / command box
+    - quicksilver
+    ## ShortCat: no more mouse clicks
+    - shortcat
+    ## System stats
+    - istat-menus
+    ## Remote control
+    # - teamviewer
+
+    # Dev tooling
+    - dash
+    - github
+    # Git visualizer
+    - gitx-rowanj
+    ## SCP / SFTP / S3 client
+    - cyberduck
+    # Diff visualizer
+    # - kaleidoscope
+
+    # Browsers
+    - firefox
+    - google-chrome
+    - google-chrome-canary
+
+    # File sync
+    - dropbox
+    - google-drive
+
+    ## Graphics
+    # - adobe-creative-cloud
+    # - skitch
+
+    ## Office
+    - libreoffice
+
+    ## Entertainment
+    - vlc
+    - spotify
+    - colloquy
+    - flash
+
+  # Ruby
+  - role: rbenv
+  - role: gem_package
+    package_name: jekyll
+
+  # custom roles
+  - role: java7
+  - role: alfred
+  - role: legit
+  - role: hub
+  - role: hnakamur.atom-packages
+    dependencies: osxc.packages
+  - role: terminal
+
+  vars:
+    atom_packages_packages:
+      # style
+      - neutron-syntax
+      - neutron-ui
+      - solarized-light-syntax
+      - solarized-dark-syntax
+
+      # languages
+      - language-diff
+      - language-go
+      - language-rust
+      - language-jade
+      - language-nginx
+      - language-matlab
+      - language-stylus
+      - language-rspec
+      - language-latex
+      # - language-scala
+      # - language-clojure
+      
+      # features
+      - editorconfig
+      - color-picker
+      - emmet
+      - autocomplete-snippets
+      - autocomplete-paths
+      - terminal-status
+      - atom-spotify
+      - test-status
+      - circle-ci
+      - travis-ci-status
+      - Sublime-Style-Column-Selection
+      - atom-bootstrap3
+      - atom-html-preview
+      - atom-lint

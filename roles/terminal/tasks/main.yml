@@ -1,0 +1,16 @@
+---
+# add colors
+- name: install Solarized Light color scheme for Terminal.app
+  sudo: yes
+  copy:
+    src: /Users/{{ ansible_user_id }}/src/github.com/tomislav/osx-terminal.app-colors-solarized/Solarized Light.terminal
+    dest: /Applications/Utilities/Terminal.app/Contents/Resources/Initial Settings/
+- name: install Solarized Dark color scheme for Terminal.app
+  sudo: yes
+  copy:
+    src: /Users/{{ ansible_user_id }}/src/github.com/tomislav/osx-terminal.app-colors-solarized/Solarized Dark.terminal
+    dest: /Applications/Utilities/Terminal.app/Contents/Resources/Initial Settings/
+- name: configure Terminal.app to use color scheme as default
+  command: defaults write com.apple.terminal "Default Window Settings" -string "{{ theme }}"
+- name: configure Terminal.app to start with color scheme
+  command: defaults write com.apple.terminal "Startup Window Settings" -string "{{ theme }}"

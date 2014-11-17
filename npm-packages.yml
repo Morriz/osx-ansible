@@ -1,0 +1,11 @@
+# custom
+- hosts: all
+  tasks:
+  - name: install global npm packages
+    ignore_errors: true
+    npm: name={{ item }} global=yes state=latest
+    with_items:
+    - gulp
+    - bower
+    - grunt
+    - strongloop

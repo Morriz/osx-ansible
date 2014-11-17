@@ -1,0 +1,6 @@
+---
+dependencies:
+  - role: osxc.packages
+  - role: git_package
+    remote_repo: github.com/square/maximum-awesome
+    local_repo: ~/src/github.com/square/maximum-awesome

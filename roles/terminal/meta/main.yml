@@ -1,0 +1,7 @@
+---
+theme: Solarized Light
+dependencies:
+  - role: osxc.packages
+  - role: git_package
+    remote_repo: github.com/tomislav/osx-terminal.app-colors-solarized
+    local_repo: ~/src/github.com/tomislav/osx-terminal.app-colors-solarized

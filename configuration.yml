@@ -19,11 +19,34 @@
     clone_url: https://github.com/gmarik/vundle.git
     dest: /Users/{{ ansible_user_id }}/.vim/bundle/vundle
   post_tasks:
-  - copy: src=dotfiles/zshrc dest=/Users/{{ ansible_user_id }}/.zshrc backup=yes
-  - copy: src=dotfiles/vimrc.local dest=/Users/{{ ansible_user_id }}/.vimrc.local backup=yes
-  - copy: src=dotfiles/vimrc.bundles.local dest=/Users/{{ ansible_user_id }}/.vimrc.bundles.local backup=yes
-  - copy: src=dotfiles/tmux.conf.local dest=/Users/{{ ansible_user_id }}/.tmux.conf.local backup=yes
+  - copy: src=dotfiles/bashrc dest=/Users/{{ ansible_user_id }}/.bashrc force=no
+  - copy: src=dotfiles/zshrc dest=/Users/{{ ansible_user_id }}/.zshrc force=no
+  - copy: src=dotfiles/zsh_aliases dest=/Users/{{ ansible_user_id }}/.zsh_aliases force=no
+  - copy: src=dotfiles/common_env dest=/Users/{{ ansible_user_id }}/.common_env force=no
+  - copy: src=dotfiles/common_aliases dest=/Users/{{ ansible_user_id }}/.common_aliases force=no
+  - copy: src=dotfiles/vimrc.local dest=/Users/{{ ansible_user_id }}/.vimrc.local force=no
+  - copy: src=dotfiles/vimrc.bundles.local dest=/Users/{{ ansible_user_id }}/.vimrc.bundles.local force=no
+  - copy: src=dotfiles/tmux.conf.local dest=/Users/{{ ansible_user_id }}/.tmux.conf.local force=no
+  - name: source .common_aliases from .bash_profile
+    ignore_errors: True
+    lineinfile: dest=/Users/{{ item[0] }}/{{ item[1] }}
+                regexp='source ~/\.common_aliases'
+                line='source ~/.common_aliases'
+                owner={{ item[0] }}
+                mode=0644
+    with_nested:
+    - "{{ affected_users }}"
+    - [ '.bash_profile' ]
 
 - hosts: all
   roles:
   - osxc.common-env
+
+# custom
+- hosts: all
+  roles:
+  - role: git_config
+    git_user_name: Maurice Faber
+    git_user_mail: morriz@idiotz.nl
+  - role: dashboard
+    disabled: YES

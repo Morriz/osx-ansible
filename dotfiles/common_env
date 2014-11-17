@@ -1,0 +1,18 @@
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='atom -w'
+fi
+
+# default workspace
+export WORKSPACE="~/src"
+
+BACKEND_DIR=$WORKSPACE/some-backend-app-location
+FRONTEND_DIR=$WORKSPACE/some-frontent-app-location
+DOCKER_DIR=$WORKSPACE/docker-services
+export DOCKER_HOST BACKEND_DIR FRONTEND_DIR DOCKER_DIR
+
+export JAVA_OPTS="-XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:ParallelGCThreads=2 -XX:ConcGCThreads=2 -server -Dsun.java2d.d3d=true -Dsun.java2d.opengl=false -Dosgi.requiredJavaVersion=1.7 -Dhelp.lucene.tokenizer=standard -Xmn512m -Xms512m -Xmx512m -Xss32m -Xverify:none"
+export JAVA_HOME=$(/usr/libexec/java_home)

@@ -1,0 +1,7 @@
+---
+- name: enable/disable dashboard
+  command: "defaults write com.apple.dashboard mcx-disabled -boolean {{ disabled }}"
+
+- name: kill the dock
+  command: killall Dock
+  ignore_errors: yes

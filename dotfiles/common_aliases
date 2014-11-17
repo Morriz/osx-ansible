@@ -1,0 +1,43 @@
+alias bp="$EDITOR ~/.bash_profile"
+alias rbp=". ~/.bash_profile"
+alias ca="$EDITOR ~/.common_aliases"
+alias cra=". ~/.common_aliases"
+alias za="$EDITOR ~/.zsh_aliases"
+alias zra=". ~/.zshn_aliases"
+alias br="$EDITOR ~/.bashrc"
+alias rbr=". ~/.bashrc"
+alias zr="$EDITOR ~/.zshrc"
+alias zrr=". ~/.zshrc"
+
+alias vih="sudo $EDITOR /etc/hosts"
+alias hig="history | grep"
+alias ll="ls -als"
+alias tf="tail -f -n300"
+alias tfs="tail -f -n400 /var/log/syslog.log"
+
+alias "g?"="git status"
+alias "g+"="git add"
+alias "g-"="git rm"
+alias "g!"="git commit -am"
+alias "g%"="git sync"
+
+# Simple web server
+alias sws="sudo python -m SimpleHTTPServer 81"
+alias sws2="sudo python -m SimpleHTTPServer 82"
+
+# special dirs
+alias cdw="cd $WORKSPACE"
+alias cdb="cd $BACKEND_DIR"
+alias cdf="cd $FRONTEND_DIR"
+alias cdd="cd $DOCKER_DIR"
+alias cdv="cdw; cd vagrant-docker"
+alias vs="vagrant ssh"
+alias cv="cdv; vs"
+
+# maven install without testing
+alias m="cdb; mvn -Dmaven.test.skip=true install"
+alias mc="cdb; mvn -Dmaven.test.skip=true clean install"
+
+# tomcat deploy
+alias t="curl -v -T $BACKEND_DIR/target/ROOT.war \"http://deploy:deploy@vagrant.box:8080/manager/text/deploy?path=&war=ROOT.war&update=true\""
+alias tl="curl -v -T $BACKEND_DIR/target/ROOT.war \"http://deploy:deploy@localhost:8080/manager/text/deploy?path=&war=ROOT.war&update=true\""

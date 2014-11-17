@@ -1,0 +1,4 @@
+# custom
+- hosts: all
+  roles:
+  - role: java7

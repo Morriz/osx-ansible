@@ -15,24 +15,52 @@ To see what comes out of the box, you have to backup and remove the following fi
  * `~/.common*`
  * `~/.vim*`
  * `~/.zsh*`
- 
+
  If will attempt to create the following files and symlinks:
- 
+
  * `~/.common-env`
  * `~/.common-aliases`
  * `~/.vim*`
  * `~/.oh-my-zsh`
  * `~/.zsh*`
- 
+
  The common files will be shared between bash and zsh.
 
-## Get started
+## Prerequisites
 
-1. Be sure to have the XCode Command-Line tools installed: `xcode-select --install`
-2. Manually install Ansible 1.8 with ``git clone https://github.com/ansible/ansible.git ~/src/github.com/ansible/ansible; cd ~/src/github.com/ansible/ansible; git submodule update --init --recursive; sudo make install``
-3. While that's happening [Fork this repo](https://github.com/morriz/osx-ansible/fork) and then clone your fork anywhere you want on your machine: `git clone https://github.com:<yourname>/osx-ansible.git osxc; cd osx-ansible`
-4. Take a quick look at `configuration.yml` and `installation.yml` customizing to your liking.
-5. Start the playbook with `ansible-galaxy install -r requirements.yml && ansible-playbook desktop.yml`
+### Sudo
+
+Before you start, make sure you have password-less sudo:
+
+    sudo visudo
+
+If you are asked for a password then you don't have sudo, so go ahead and uncomment the line granting passwordless sudo to the group 'wheel'.
+
+Then add yourself to the 'wheel' group:
+
+    sudo dseditgroup -o edit -a usernametoadd -t user wheel
+
+And if you want to be an admin if you weren't yet (I don't believe this is necessary, but I might be wrong. Hey, I'm admin!):
+
+    sudo dseditgroup -o edit -a usernametoadd -t user admin
+    
+### Cask app path
+
+To not have brew cask install all apps in `~/Applications`, but in `/Applications` (like the rest of your apps), and to avoid double installs, we need to tell cask about this. So until [this pull request](https://github.com/osxc/homebrew/pull/5) is merged, place this line somewhere in your ~/.bash_profile: `export HOMEBREW_CASK_OPTS="--appdir=/Applications"`
+and make sure you source it (`. ~/.bash_profile`) before running the playbook.
+
+### Xcode
+
+Be sure to have the XCode Command-Line tools installed: `xcode-select --install`
+
+## Install
+
+You are now set to go ahead:
+
+1. Manually install Ansible 1.8 with ``git clone https://github.com/ansible/ansible.git ~/src/github.com/ansible/ansible; cd ~/src/github.com/ansible/ansible; git submodule update --init --recursive; sudo make install``
+2. While that's happening [Fork this repo](https://github.com/morriz/osx-ansible/fork) and then clone your fork anywhere you want on your machine: `git clone https://github.com:<yourname>/osx-ansible.git osxc; cd osx-ansible`
+3. Take a quick look at `configuration.yml` and `installation.yml` customizing to your liking.
+4. Start the playbook with `ansible-galaxy install -r requirements.yml && ansible-playbook desktop.yml`
 
 ## Credits
 

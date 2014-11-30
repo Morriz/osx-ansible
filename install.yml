@@ -2,12 +2,15 @@
 # Here we describe every software we may want to install
 - hosts: all
   roles:
+  - homebrew: name=git state=latest --without-completions
+
   - role: osxc.packages
     brew_taps:
     - caskroom/fonts
     - thoughtbot/formulae
     brew_packages:
     - git
+    - bash
     - zsh
     - vim
     - the_silver_searcher
@@ -151,7 +154,7 @@
       - language-latex
       # - language-scala
       # - language-clojure
-      
+
       # features
       - editorconfig
       - color-picker

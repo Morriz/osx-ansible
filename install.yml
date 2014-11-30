@@ -139,8 +139,10 @@
       # style
       - neutron-syntax
       - neutron-ui
-      - solarized-light-syntax
+      - solarized-dark-ui
       - solarized-dark-syntax
+      - solarized-light-syntax
+      - solarized-light-ui
 
       # languages
       - language-diff
